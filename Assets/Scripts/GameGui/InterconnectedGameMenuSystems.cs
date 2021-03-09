@@ -7,8 +7,7 @@ using UnityEngine;
 
 public class InterconnectedGameMenuSystems : MonoBehaviour
 {
-    public GameMenuState CurrentGameState { get; private set; }
-
+    private GameMenuState _currentGameState;
     private GameMenuState _playing;
     private GameMenuState _waitLaunch;
     private GameMenuState _waitContinue;
@@ -19,16 +18,31 @@ public class InterconnectedGameMenuSystems : MonoBehaviour
         _waitLaunch = getComponent<StateWaitingForLaunchOfGame>();
         _waitContinue = getComponent<StateWaitingForGameToContinue>();
 
-        CurrentGameState = _waitLaunch;
+        _currentGameState = _waitLaunch;
+    }
+
+    public void ChangeStateToPlay()
+    {
+        _currentGameState = _playing;
+    }
+
+    public void ChangeStateToWaitLaunch()
+    {
+        _currentGameState = _waitLaunch;
+    }
+
+    public void ChangeStateToWaitContinueGame()
+    {
+        _currentGameState = _waitContinue;
     }
 
     public bool IsInGame()
     {
-        return CurrentGameState == _playing;
+        return _currentGameState == _playing;
     }
 
     public bool IsOutOfGame()
     {
-        return CurrentGameState != _playing;
+        return _currentGameState != _playing;
     }
 } 
