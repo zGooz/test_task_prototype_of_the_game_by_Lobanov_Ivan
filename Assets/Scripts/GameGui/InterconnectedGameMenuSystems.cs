@@ -14,9 +14,9 @@ public class InterconnectedGameMenuSystems : MonoBehaviour
 
     private void Awake()
     {
-        _playing = getComponent<StatePlayingNow>();
-        _waitLaunch = getComponent<StateWaitingForLaunchOfGame>();
-        _waitContinue = getComponent<StateWaitingForGameToContinue>();
+        _playing = GetComponent<StatePlayingNow>();
+        _waitLaunch = GetComponent<StateWaitingForLaunchOfGame>();
+        _waitContinue = GetComponent<StateWaitingForGameToContinue>();
 
         _currentGameState = _waitLaunch;
     }

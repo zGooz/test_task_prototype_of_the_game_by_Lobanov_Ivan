@@ -1,13 +1,26 @@
 
+using UnityEngine;
+
 public class StatePlayingNow : GameMenuState
 {
-    protected override void SuspendGame() 
+    [SerializeField] private ButtonClick _gamePauseButton;
+    [SerializeField] private GameObject _pauseMenu;
+    [SerializeField] private GameObject _gameMenu;
+
+    private void OnEnable()
     {
-        _playing.ChangeStateToWaitContinueGame();
+        _gamePauseButton.Click += SuspendGame;
     }
 
-    protected override void ResumeGame()
+    private void OnDisable()
     {
-        _playing.ChangeStateToPlay();
+        _gamePauseButton.Click -= SuspendGame;
+    }
+
+    protected override void SuspendGame() 
+    {
+        _menuSystem.ChangeStateToWaitContinueGame();
+        _pauseMenu.SetActive(true);
+        _gameMenu.SetActive(false);
     }
 }

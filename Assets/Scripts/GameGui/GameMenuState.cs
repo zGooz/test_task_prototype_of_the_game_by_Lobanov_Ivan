@@ -9,7 +9,7 @@ public abstract class GameMenuState : MonoBehaviour
 
     private void Awake()
     {
-        _menuSystem = getComponent<InterconnectedGameMenuSystems>();
+        _menuSystem = GetComponent<InterconnectedGameMenuSystems>();
     }
 
     protected virtual void RunGame() {}
