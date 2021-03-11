@@ -18,4 +18,10 @@ public class Stairs : MonoBehaviour
     {
         _steps.Add(step);
     }
+
+    public void MarkLastStep()
+    {
+        var step = _steps[Size - 1];
+        step.AddComponent(typeof(LastStep));
+    }
 }

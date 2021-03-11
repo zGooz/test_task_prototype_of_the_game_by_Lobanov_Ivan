@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public Vector3 StepValue { get; private set; } = new Vector3(0.7f, 0.2f, 0.7f);
+    public Vector3 StepValue { get; private set; } = new Vector3(1.414f, 0.3f, 1.414f);
 
     [SerializeField] private ButtonClick _gameStartButton;
     [SerializeField] private GameObject _stepPrefab;
     [SerializeField] private GameObject _defaultStep;
     [SerializeField] private GameObject _player;
     private Stairs _stairs;
-    private readonly int _spawnCount = 6;
+    private readonly int _spawnCount = 4;
 
     private void Awake()
     {
@@ -49,8 +49,10 @@ public class Spawner : MonoBehaviour
 
             _stairs.AddAnotherStep(step);
 
-            var y = Random.Range(0.14f, 0.16f);
+            var y = StepValue.y + Random.Range(0.15f, 0.18f);
             StepValue = new Vector3(StepValue.x, y, StepValue.z);
         }
+
+        _stairs.MarkLastStep();
     }
 }

@@ -17,14 +17,6 @@ public class PlayerState : MonoBehaviour
         _oldPosition = _transform.position;
     }
 
-    private void OnCollisionExit(Collision collision)
-    {
-        if (IsImmovable)
-        {
-
-        }
-    }
-
     private void Update()
     {
         IsImmovable = (_transform.position == _oldPosition);
