@@ -6,13 +6,15 @@ using UnityEngine;
 
 public class PlayerBody : MonoBehaviour
 {
+    public float MaxPullLenght => _maxPullLength;
+
     [SerializeField] private PlayerHandler _inputControl;
     [SerializeField] private InterconnectedGameMenuSystems _system;
     [SerializeField] private GameObject _congratulationsOnVictory;
     private Rigidbody _body;
     private PlayerState _state;
     private float _maxPullLength;
-    private float _speed = 14f;
+    private readonly float _speed = 14f;
 
     private void Awake()
     {
@@ -56,7 +58,7 @@ public class PlayerBody : MonoBehaviour
         if (_state.IsImmovable)
         {
             var power = _inputControl.ShotPower;
-            var angle = _inputControl.Angle;
+            var angle = _inputControl.Angle * Mathf.Deg2Rad;
 
             var ratio = Mathf.Clamp(power / _maxPullLength, 0, 1);
             var cos = Mathf.Cos(angle);

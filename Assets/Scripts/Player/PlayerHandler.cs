@@ -7,27 +7,38 @@ public class PlayerHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 {
     public event UnityAction Fire;
     public float ShotPower => _direction.magnitude;
-    public float Angle => (_angle >= 360) ? _angle - 360 : _angle;
-    
+    public float Angle { get; private set; }
+
+    [SerializeField] private GameObject _aim;
+    [SerializeField] private PlayerState _state;
     private Vector2 _origin = Vector2.zero;
     private Vector2 _direction = Vector2.zero;
-    private float _angle = 0;
 
     public void OnPointerDown(PointerEventData eventData)
     {
         _direction = Vector2.zero;
         _origin = eventData.position;
+
+        if (_state.IsImmovable)
+        {
+            _aim.SetActive(true);
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Fire?.Invoke();
+        if (_state.IsImmovable)
+        {
+            _aim.SetActive(false);
+            Fire?.Invoke();
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         var heldPosition = eventData.position;
         _direction = -1 * (heldPosition - _origin);
-        _angle = Mathf.Atan2(_direction.y, _direction.x);
+        Angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
+        Angle = (Angle >= 360) ? Angle - 360 : (Angle < 0 ? Angle + 360 : Angle);
     }
 }
