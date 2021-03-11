@@ -10,7 +10,6 @@ public class PlayerBody : MonoBehaviour
 
     [SerializeField] private PlayerHandler _inputControl;
     [SerializeField] private InterconnectedGameMenuSystems _system;
-    [SerializeField] private GameObject _congratulationsOnVictory;
     private Rigidbody _body;
     private PlayerState _state;
     private float _maxPullLength;
@@ -34,18 +33,6 @@ public class PlayerBody : MonoBehaviour
     private void OnDisable()
     {
         _inputControl.Fire -= Fire;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (_state.IsImmovable)
-        {
-            var instance = collision.gameObject;
-            if (instance.TryGetComponent(typeof(LastStep), out Component step))
-            {
-                _congratulationsOnVictory.SetActive(true);
-            }
-        }
     }
 
     private void Fire()
