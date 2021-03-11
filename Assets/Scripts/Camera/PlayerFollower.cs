@@ -1,6 +1,8 @@
 
 using UnityEngine;
 
+[RequireComponent(typeof(Transform))]
+
 public class PlayerFollower : MonoBehaviour
 {
     [SerializeField] private GameObject _player;

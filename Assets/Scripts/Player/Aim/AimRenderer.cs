@@ -1,10 +1,14 @@
 
 using UnityEngine;
 
+[RequireComponent(typeof(LineRenderer))]
+[RequireComponent(typeof(Transform))]
+
 public class AimRenderer : MonoBehaviour
 {
     [SerializeField] private PlayerHandler _handler;
     [SerializeField] private GameObject _player;
+    [SerializeField] private InterconnectedGameMenuSystems _system;
     private PlayerState _playerState;
     private LineRenderer _lineRenderer;
     private Transform _transform;
@@ -21,6 +25,11 @@ public class AimRenderer : MonoBehaviour
 
     private void Update()
     {
+        if (_system.IsOutOfGame)
+        {
+            return;
+        }
+
         if (_playerState.IsImmovable)
         {
             var angle = _handler.Angle * Mathf.Deg2Rad;

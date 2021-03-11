@@ -1,8 +1,7 @@
 
 using UnityEngine;
 
-/// TODO : Change to mesh collider
-[RequireComponent(typeof(CapsuleCollider))]
+[RequireComponent(typeof(Transform))]
 
 public class PlayerState : MonoBehaviour
 {

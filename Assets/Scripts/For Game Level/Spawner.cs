@@ -1,6 +1,8 @@
 
 using UnityEngine;
 
+[RequireComponent(typeof(Stairs))]
+
 public class Spawner : MonoBehaviour
 {
     public Vector3 StepValue { get; private set; } = new Vector3(1f, 0.3f, 1f);

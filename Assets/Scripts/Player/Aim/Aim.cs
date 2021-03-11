@@ -1,6 +1,8 @@
 
 using UnityEngine;
 
+[RequireComponent(typeof(Transform))]
+
 public class Aim : MonoBehaviour
 {
     [SerializeField] private PlayerHandler _handler;
