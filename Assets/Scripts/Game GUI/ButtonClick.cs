@@ -3,11 +3,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class ButtonClick : MonoBehaviour, IPointerClickHandler
+public class ButtonClick : MonoBehaviour, IPointerDownHandler
 {
     public event UnityAction Click;
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
         Click?.Invoke();
     }

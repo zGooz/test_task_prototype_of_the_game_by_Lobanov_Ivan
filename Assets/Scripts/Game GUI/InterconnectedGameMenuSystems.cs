@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class InterconnectedGameMenuSystems : MonoBehaviour
 {
+    public bool IsOutOfGame => _currentGameState != _playing;
+
     private GameMenuState _currentGameState;
     private GameMenuState _playing;
     private GameMenuState _waitLaunch;
@@ -34,15 +36,5 @@ public class InterconnectedGameMenuSystems : MonoBehaviour
     public void ChangeStateToWaitContinueGame()
     {
         _currentGameState = _waitContinue;
-    }
-
-    public bool IsInGame()
-    {
-        return _currentGameState == _playing;
-    }
-
-    public bool IsOutOfGame()
-    {
-        return _currentGameState != _playing;
     }
 } 

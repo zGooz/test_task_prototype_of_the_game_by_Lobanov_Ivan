@@ -29,6 +29,7 @@ public class StateWaitingForLaunchOfGame : GameMenuState
 
     private void QuitGame()
     {
+        Debug.Log("Game end");
         Application.Quit();
     }
 }
