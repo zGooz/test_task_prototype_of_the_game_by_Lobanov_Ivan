@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public Vector3 StepValue { get; private set; } = new Vector3(1f, 0.3f, 1f);
+    public Vector3 StepValue { get; private set; } = new Vector3(1f, 0f, 1f);
 
     [SerializeField] private ButtonClick _gameStartButton;
     [SerializeField] private GameObject _stepPrefab;
@@ -51,7 +51,7 @@ public class Spawner : MonoBehaviour
 
             _stairs.AddAnotherStep(step);
 
-            var y = Random.Range(0.3f, 0.5f);
+            var y = Random.Range(0.2f, 0.25f);
             StepValue = new Vector3(StepValue.x, y, StepValue.z);
         }
     }

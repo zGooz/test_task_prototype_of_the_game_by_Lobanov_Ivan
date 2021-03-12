@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Transform))]
 
@@ -24,13 +25,12 @@ public class DeadArea : MonoBehaviour
         _transform.position = position + _vectorToTarget;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerExit(Collider collision)
     {
         var instance = collision.gameObject;
         if (instance.TryGetComponent(typeof(PlayerBody), out Component other))
         {
-            var body = _player.GetComponent<PlayerBody>();
-            _player.transform.position = body.StartPosition;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

@@ -13,20 +13,22 @@ public class AimRenderer : MonoBehaviour
     private LineRenderer _lineRenderer;
     private Transform _transform;
     private PlayerBody _playerBody;
-    private float _referenceLineLength = 5f;
+    private float _referenceLineLength = 2f;
 
     private void Awake()
     {
         _playerState = _player.GetComponent<PlayerState>();
+        _playerBody = _player.GetComponent<PlayerBody>();
         _lineRenderer = GetComponent<LineRenderer>();
         _transform = GetComponent<Transform>();
-        _playerBody = _player.GetComponent<PlayerBody>();
     }
 
     private void Update()
     {
         if (_system.IsOutOfGame)
         {
+            _lineRenderer.SetPosition(0, _transform.position);
+            _lineRenderer.SetPosition(1, _transform.position);
             return;
         }
 

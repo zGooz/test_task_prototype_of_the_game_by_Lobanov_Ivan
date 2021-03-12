@@ -14,6 +14,7 @@ public class PlayerHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     private Vector2 _origin = Vector2.zero;
     private Vector2 _direction = Vector2.zero;
 
+
     public void OnPointerDown(PointerEventData eventData)
     {
         _direction = Vector2.zero;
@@ -29,9 +30,10 @@ public class PlayerHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         if (_state.IsImmovable)
         {
-            _aim.SetActive(false);
             Fire?.Invoke();
         }
+
+        _aim.SetActive(false);
     }
 
     public void OnDrag(PointerEventData eventData)

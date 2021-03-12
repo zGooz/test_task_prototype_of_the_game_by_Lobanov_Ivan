@@ -11,13 +11,13 @@ public class StateWaitingForLaunchOfGame : GameMenuState
     private void OnEnable()
     {
         _gameStartButton.Click += RunGame;
-        _gameEndButton.Click += QuitGame;
+        _gameEndButton.Click += ExitGame;
     }
 
     private void OnDisable()
     {
         _gameStartButton.Click -= RunGame;
-        _gameEndButton.Click -= QuitGame;
+        _gameEndButton.Click -= ExitGame;
     }
 
     protected override void RunGame() 
@@ -27,7 +27,7 @@ public class StateWaitingForLaunchOfGame : GameMenuState
         _mainMenu.SetActive(false);
     }
 
-    private void QuitGame()
+    private void ExitGame()
     {
         Debug.Log("Game end");
         Application.Quit();

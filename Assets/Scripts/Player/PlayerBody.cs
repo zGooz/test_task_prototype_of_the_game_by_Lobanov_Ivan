@@ -17,18 +17,19 @@ public class PlayerBody : MonoBehaviour
     private Transform _transform;
     private Vector3 _startPosition;
     private float _maxPullLength;
-    private readonly float _speed = 6f;
+    private readonly float _speed = 45f;
 
     private void Awake()
     {
         _state = GetComponent<PlayerState>();
         _body = GetComponent<Rigidbody>();
         _transform = GetComponent<Transform>();
-        _startPosition = _transform.position;
+        _maxPullLength = Mathf.Min(Screen.width, Screen.height) / 2;
+    }
 
-        var ww = Screen.width * Screen.width;
-        var hh = Screen.height * Screen.height;
-        _maxPullLength = Mathf.Sqrt(ww + hh);
+    private void Start()
+    {
+        _startPosition = _transform.position;
     }
 
     private void OnEnable()
